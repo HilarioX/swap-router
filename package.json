@@ -3,9 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "swap:v3": "node src/v3/uni-v3.js",
+    "swap:v2": "node src/uni-v2.js"
+  },
   "dependencies": {
     "@uniswap/sdk": "^3.0.3",
+    "@uniswap/sdk-core": "^4.0.7",
+    "@uniswap/smart-order-router": "^3.16.33",
     "@uniswap/v3-core": "^1.0.1",
+    "@uniswap/v3-periphery": "^1.4.4",
+    "@uniswap/v3-sdk": "^3.10.0",
     "dotenv": "^16.3.1",
     "ethers": "5.7",
     "web3": "^4.1.2"
