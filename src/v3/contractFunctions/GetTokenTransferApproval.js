@@ -31,29 +31,25 @@ function toReadableAmount(rawAmount, decimals) {
 }
 
 module.exports = async (token, wallet, provider) => {
-    try {
-        const tokenContract = new ethers.Contract(
-            token.address,
-            ERC20_ABI,
-            provider
-        )
+  try {
+    const tokenContract = new ethers.Contract(
+      token.address,
+      ERC20_ABI,
+      provider
+    )
 
-        const transaction = await tokenContract.populateTransaction.approve(
-            '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45',
-            fromReadableAmount(
-                0.05,
-                token.decimals
-            ).toString()
-        )
+    const transaction = await tokenContract.populateTransaction.approve(
+      '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45',
+      '5000000000000000'
+    )
 
-        console.log(transaction)
-
-        return sendTransaction({
-            ...transaction,
-            from: wallet.address,
-        }, provider, wallet)
-    } catch (e) {
-        console.error(e)
-         return 'Failed'
-    }
+    return sendTransaction({
+      ...transaction,
+      from: wallet.address,
+    },
+    provider, wallet)
+  } catch (e) {
+    console.error(e)
+    return 'Failed'
+  }
 }

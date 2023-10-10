@@ -1,9 +1,8 @@
 const sendTransaction = require('./SendTransaction')
 const getTokenTransferApproval = require('./GetTokenTransferApproval')
-const { WETH_POLYGON_MUMBAI } = require('@uniswap/smart-order-router')
 
-module.exports = async (route, provider, wallet) => {
-        const tokenApproval = await getTokenTransferApproval(WETH_POLYGON_MUMBAI, wallet, provider)
+module.exports = async (route, provider, wallet, inputToken) => {
+        const tokenApproval = await getTokenTransferApproval(inputToken, wallet, provider)
 
         if (tokenApproval !== 'Sent') {
             return 'Failed'
@@ -11,12 +10,10 @@ module.exports = async (route, provider, wallet) => {
 
         const res = await sendTransaction({
             data: route.methodParameters?.calldata,
-            to: '0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad',
+            to: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD',
             value: route?.methodParameters?.value,
             from: process.env.WALLET_ADDRESS,
-            gasLimit: 21000,
-            maxFeePerGas: 1000000000,
-            maxPriorityFeePerGas: 100000000,
+            gasLimit: 50000
         }, provider, wallet)
 
         return res;

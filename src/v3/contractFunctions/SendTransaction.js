@@ -21,8 +21,12 @@ module.exports = async (transaction, provider, wallet) => {
   }
 
   if (receipt) {
-    return 'Sent'
+    return {
+      status: 'Sent',
+      receipt,
+      txRes
+    }
   } else {
-    return 'Failed'
+    return { status: 'Failed' }
   }
 }

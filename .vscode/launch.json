@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug dev",
+            "type": "node-terminal",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "command": "yarn swap:v3"
+        }
+    ]
+}
